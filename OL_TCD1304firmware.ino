@@ -12,7 +12,11 @@ unsigned long tICG = 6000;    // 6ms  > tINT;
 
 uint16_t Pixels[4000];
 elapsedMicros tus;
-
+//uint16_t ROI[101];
+//float Position = 0;
+//int id = 0;
+//int ROIw = 0;
+//int ROIs = 0;
 
 void setup()
 {
@@ -67,8 +71,65 @@ void TCD1304(){
   while (tus < tICG){}
 }
 
-
+//void ROIsize()
+// {
+//  int id = 0;
+//  int tempmin = 0;
+//  int tempmax = 10000;
+//  int temp = 0;
+//
+//  for (int j = 33+51; j < 3679-51; j++)
+//  {
+//       if (Pixels[j]>tempmax)
+//       {
+//        tempmax = Pixel[j];
+//        id = j;
+//       }
+//       if (Pixels[j]<tempmin)
+//       {
+//        tempmin = Pixel[j];
+//       }
+//  }
+//
+//  int bg = tempmin + (tempmax-tempmin)/10;
+//  float c = 0;
+//    for (int n=-50; n<50; n++)
+//    {
+//      temp = Pixels[id+n] - bg;
+//      if (temp<0)
+//          temp = 0;
+//      ROI[n+50] = temp;      
+//    }
+//
+//    float A = 0;
+//    float B = 0;
+//    for (int n=-50; n<50; n++)
+//    {
+//      A += ROI[n+50]*n;
+//      B += ROI[n+50];      
+//    }
+//    c = A/B;
+//    for (int n=-50; n<50; n++)
+//    {
+//      D += ROI[n+50]*(n-c);
+//    }
+//    ROIw = 4*sqrt(D)/B -0.5;
+//    ROIs = 2*ROIw + 1;
+// }
+//
+//void ePhasor()
+// {
+//    for (int n=-ROIw; n<ROIw; n++)
+//    {
+//     real += Pixels[id+n]*cos(2*pi*(n+ROIw)/ROIs);
+//     imag += -Pixels[id+n]*sin(2*pi*(nROIw)/ROIs);
+//    }
+//    Position = -(atan(imag/real)/(2*pi/ROIw)-0.5) + id;
+// }
 
 void loop(){
     TCD1304();
+//    ROIsize();
+//    ePhasor();
+//    Serial.println(Position,3);
 }
